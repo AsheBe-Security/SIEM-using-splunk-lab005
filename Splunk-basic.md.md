@@ -51,7 +51,8 @@ this location /opt/splunkforwarder)
 4. start the splunk forwarder
      - /opt/splunkforwarder/bin/splunk start ----accept----
        
-    <img width="1065" height="702" alt="image" src="https://github.com/user-attachments/assets/8ed2379a-3139-46e0-9a4f-49ad36693da4" />
+<img width="1065" height="702" alt="image" src="https://github.com/user-attachments/assets/8ed2379a-3139-46e0-9a4f-49ad36693da4" />
+    
 ####Part three configure splunk to recieve apache logs
 1. go to the virtual machine which runs  splunk server and start splunk using terminal
      - sudo su - splunk
