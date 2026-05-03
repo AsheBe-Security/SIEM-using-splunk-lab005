@@ -4,10 +4,13 @@
 
 This lab is designed to centrally collect and organize logs from web server running using apache and windows logs which will be forwarded using splunk universalforwarder.
 during this lab, i will undergoes 
+
     - fundamental installation and configuration 
-          - splunk on splunk server
-          - apache server
-          - splunk universalforwarder 
+    
+    - splunk on splunk server
+    - apache server
+    - splunk universalforwarder
+          
     - analyzing logs forwarded from both apache and windows
     -simulate brutforce attack and detect it using splunk and take leason from it
     - failed login /authentication attack on windows 
