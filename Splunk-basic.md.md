@@ -1,3 +1,6 @@
+<img width="1168" height="663" alt="IMG_20260503_181858" src="https://github.com/user-attachments/assets/e9fdb30a-9de4-45ae-9432-f8223bfcf70f" />
+
+
 # SEIM lab using splunk
 
 **🎯 Lab Objectives**
