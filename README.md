@@ -21,6 +21,8 @@ during this lab, i will undergoes
       - configure splunk to recieve forwarded logs
           - Go to setting
           - forwarding and recieving
+          - configure recieving
+          - click New recieving port (would be 9997)
  - Install and run apache web service
         - sudo apt-get install apache2
         - sudo systemctl status apache2 (to check the status of apache2 service)
