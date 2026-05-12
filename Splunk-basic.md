@@ -1,74 +1,73 @@
-<img width="1168" height="663" alt="IMG_20260503_181858" src="https://github.com/user-attachments/assets/e9fdb30a-9de4-45ae-9432-f8223bfcf70f" />
+<img width="1168" height="663" alt="IMG_20260503_181858" src="https://github.com/user-attachments/assets/d27f0a97-b38b-45ab-94d7-54c0ca05c5f8" />
 
+### SIEM lab designed using splunk
 
-# SEIM lab using splunk
-
-**🎯 Lab Objectives**
-
-By the end of this lab, i will be able to:
-- Understand how Splunk works as a SIEM
-- Ingest log data
-- Run searches and create alerts
-- Detect a basic security event (failed logins)
-Tools
-for this lab, required
-- Linux as attack machine
-- download splunk
-- windows/ubuntu server for generating logs
-  #### Part One
-1.Download ubuntu OS
-    - For Splunk server Vbox
-    - For Apache server Vbox
-2. download splunk and splunk universalforwarder
-   - On the splunk server Vbox, open the terminal (avoid using the root ) and copy paste the dowloding link to the splunk enterprise
-       - wget -O splunk-10.2.2-80b90d638de6-linux-amd64.tgz "https://download.splunk.com/products/splunk/releases/10.2.2/linux/splunk-10.2.2-80b90d638de6-linux-amd64.tgz" 
-   -On the apache server download both splunk universalforwarder and apache2 using the terminal but cal also be downloaded locally 
-       - wget -O splunkforwarder-10.2.2-80b90d638de6-linux-amd64.tgz "https://download.splunk.com/products/universalforwarder/releases/10.2.2/linux/splunkforwarder-10.2.2-80b90d638de6-linux-amd64.tgz"
-       - sudo apt install apache2
-3.On the splunk server 
-  -let us create splunk user
-     - first switch to root user
-           - sudo su
-     - useradd -s /bin/bash -d /opt/splunk -m splunk (we have created splunk user lives within the home directory /opt/splunk
-     - check if the user exists by moving in to the user
-     - su - splunk
-     - whoami
-     - after moving in to the home direcotry of splunk (/opt/splunk), try to extract the tgz file we downloaded earlier
-         - tar -xzvf splunk-8.0.4.1-ab7a85abaa98-Linuxx86_64 -C /opt/
-     - sudo /opt/splunk/bin/splunk start --accept-license
-     - provide username and password
- 4. once the splunk started, we can open the splunk web interface using your splunk ip running on port 8000
-         - 192.168.0.80:8000
-           
-   <img width="1897" height="742" alt="image" src="https://github.com/user-attachments/assets/9c8d68d0-6f77-42ab-965a-cb343486a2f5" />
-###Part two 
-regarding splunk universalforwarder
-1. Open the apache server vbox
-2. on the terminal window use the command
-      - sudo su (to switch in to the root user)
-      - useradd -s /bin/bash -d /opt/splunkforwarder -m splunk (Create new user called splunk with home directory at 
-this location /opt/splunkforwarder)
-      - su - splunk ( to switch to splunk user)
-3. Extract the downloaded tgz file in to the directory of /opt/splunkforwarder
-     - tar -xzvf splunkforwarder-8.0.4-767223ac207fLinux-x86_64.tgz -C /opt/
-4. start the splunk forwarder
-     - /opt/splunkforwarder/bin/splunk start ----accept----
-       
-<img width="1065" height="702" alt="image" src="https://github.com/user-attachments/assets/8ed2379a-3139-46e0-9a4f-49ad36693da4" />
-    
-####Part three configure splunk to recieve apache logs
-1. go to the virtual machine which runs  splunk server and start splunk using terminal
-     - sudo su - splunk
-     - /opt/splunk/bin/splunk start
-     - open your browser and type in your ubuntu ip address with it port number 8000
-           - xx.xx.xx.xx:8000
-2. Go to splunk web interface, go to setting and under data click forwarding and recieving option
-     - click on receiving
-     - click new receiving ports
-     - type in port number 9997 and save
-       
-   <img width="1902" height="402" alt="image" src="https://github.com/user-attachments/assets/f75f4d8e-45c7-47b0-b004-bc1078e29ba5" />
-
-3. Create the index where the log data lives in
-     - Go to setting
-     - click on indexes  
+This lab is designed to centrally collect and organize logs from web server running using apache and windows logs which will be forwarded using splunk universalforwarder.
+during this lab, i will undergoes 
+#### Step one: fundamental installation and configuration 
+  - Install splunk enterprise from www.splunk.com
+      - Download locally and extract the zip file manually
+      - Use CLI (recommended, prefrred tgz file)
+          - wget -O splunk-10.2.3-4d61cf8a5c0c-windows-x64.msi "https://download.splunk.com/products/splunk/releases/10.2.3/windows/splunk-10.2.3-4d61cf8a5c0c-windows-x64.msi"
+      - install splunk by extracting
+          - tar -xzvf splunk-8.0.4.1-ab7a85abaa98-Linux-x86_64 -C /opt/
+      - Creates use account for running splunk for better protection (avoid running it with root access)
+          - sudo su (to move in to root access)
+          - useradd -s /bin/bash -d /opt/splunk -m splunk
+          - su - splunk (to move in to the user splunk)
+          - /opt/splunk/bin/splunk start (to start splunk services)
+          - Access the web interface by running the machine ip address together with the port 8000
+                - 192.168.0.96:8000 (if it work, will take you to the splunk web interface)
+      - configure splunk to recieve forwarded logs
+          - Go to setting
+          - forwarding and recieving
+          - configure recieving
+          - click New recieving port (would be 9997)
+ - Install and run apache web service
+        - sudo apt-get install apache2
+        - sudo systemctl status apache2 (to check the status of apache2 service)
+        - sudo systemctl restart apache2) (to restart the service)
+        - open browser and type in the web server ip address, if it takes you the defualt apache web page, it works
+ - Generate apache logs
+      - First we need to locate the apache logs by moving in to
+          - /var/log/apache2/
+              - access.log
+              - error.log
+      - open the log file to see if logs are captured
+           - sudo tail -f /var/log/apache2/access.log
+           - sudo tail -f /var/log/apache2/error.log
+      - Creates a log by accessing the apache web broswer we have lunched before
+#### Step two splunk universal forwarder
+  - Download splunk universal forwarder from splunk web (splunk.com)
+        - wget -O splunkforwarder-10.2.3-4d61cf8a5c0c-linux-amd64.tgz "https://download.splunk.com/products/universalforwarder/releases/10.2.3/linux/splunkforwarder-10.2.3-4d61cf8a5c0c-linux-amd64.tgz"
+  - extract the downloadable file using the command
+      - tar -xzvf splunkforwarder-8.0.4-767223ac207f-Linux-x86_64.tgz -C /opt/
+  -  Create user account for splunkforwarder
+      -  useradd -s /bin/bash -d /opt/splunkforwarder -m splunk
+  - Switch in to the splunk user to start the service
+       - sudo su - splunk (moving in to the splunk user)
+       - /opt/splunkforwarder/bin/splunk start (Starting the splunk forwarder service)
+  - configure forwarder output (Telling the splunk forwarder where the splunk server lives)
+      - sudo /opt/splunkforwarder/bin/splunk list forward-server (listing connected server)
+      - sudo /opt/splunkforwarder/bin/splunk add forward-server IP:port
+#### Step Three Configure Apache log monitoring
+   - we need to check whether or not the two access files are add to forwader
+       - sudo /opt/splunkforwarder/bin/splunk list monitor (listing the logs)
+       - sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/apache2/access.log
+       - sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/apache2/error.log
+   - Restart the forwarder
+       -/opt/splunkforwarder/bin/splunk restart
+#### Step Four Verify log ingestion
+   - on the splunk web interface
+   - Got to search and report
+   - your SPL = index=_internal or
+   - source ="/var/log/apache2/access.log" or
+   - host = apache-client name
+#### Step Five Create a simple Dashboard
+  - source ="/var/log/apache2/access.log"
+  - Dashboard
+  - Create new Dashboard
+  - Give it a title
+  - choose your charts and
+  - file/event (type in the string like source=/vssr/log/apache2/access.log)
+          
