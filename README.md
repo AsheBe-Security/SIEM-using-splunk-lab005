@@ -16,4 +16,11 @@ during this lab, Three Task were carried out
  - install and run splunk universal forwarder on apache machine
  - configure apache logs on splunk fowarder
     - This was achieved by locating both the access.log and error.log on apache and add these log files in to the forwarder monitor
-    - neccessary test was carried out on every step of the way 
+    - neccessary test was carried out on every step of the way
+### Task 2 Brute force attack detection 
+i have used ssh service for simulating a brute force attack
+  - i have install and run ssh service from openssh-server
+  - check if there is auth.log on apache server to see successful or failed login attempts
+  - by accessing the splunk web inteface we provide the path to auth.log in to Directories
+  - provided index under the name ssh_logs so that any data can easily be located within this index
+  - for the first time we provided the right credentials to see how the logs behave and on the second time, i used wrong login too many time. Logs with failed login was created from one single ip address.
