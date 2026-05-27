@@ -45,7 +45,12 @@ Steps used on this lab
          - index=main sourcetype=linux_secure "Failed password" OR "Accepted password"
          - source= "/var/log/auth.log" (shows all logs captured on the auth.log
          - host= "hostname" (all log captured from the machine running splunk forwarder)
-4. Create splunk alerts from the captured logs
+4. Simulate brute force attack on the machine running forwarder from two machine; windows host machine and ubuntu vm
+         - First let us run nmap to discover if host is live and ports are running the service
+                - nmap -SV -sS 192.168.0.55/24 (i scanned the entire subnet to discover which end devicea are live)
+         - ssh xxxx@192.168.055
+           - Password that host machine
+6.  Create splunk alerts from the captured logs
         - On the top tight section you will find Save As option >>> Alert
         - Set:
    
@@ -53,7 +58,7 @@ Steps used on this lab
            - Trigger Condition: Number of results > 0 (or > X for severity).
            - Trigger Actions: Email, Slack, webhook, or "Run a script" for blocking.
            - Throttle if needed (e.g., suppress for same src_ip for 1 hour).
-5. Build a Simple Dashboard
+7. Build a Simple Dashboard
    
   - Create a new Dashboard in Splunk.
   - Add panels with the queries above:
