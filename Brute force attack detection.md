@@ -1,10 +1,10 @@
 ## Lab 005 Brute force attack using ssh service on splunk
 objectives: by the end of this lab, i will be able to
-    - run ssh service on both the attack and victim machine running on vm
-    - install and configure splunk enterprise on ubuntu 
-    - install anf configure splunk universal forwarder on the attack machine to see of log can be generated on splunk
-    - creates both failed login and successful login on the ssh service to see how logs behaves 
-    - filtters collected logs using different spl (search key words) and use these filters to creates both dashboard and alerts 
+  - run ssh service on both the attack and victim machine running on vm
+  - install and configure splunk enterprise on ubuntu 
+  - install anf configure splunk universal forwarder on the attack machine to see of log can be generated on splunk
+  - creates both failed login and successful login on the ssh service to see how logs behaves 
+  - filtters collected logs using different spl (search key words) and use these filters to creates both dashboard and alerts 
 
 Architecture of this lab 
     = Ubuntu os - running splunk server - ip = 192.168.0.77
