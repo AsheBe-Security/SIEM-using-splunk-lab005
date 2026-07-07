@@ -8,8 +8,9 @@
   - filtters collected logs using different spl (search key words) and use these filters to creates both dashboard and alerts 
 
 Architecture of this lab 
-    = Ubuntu os - running splunk server - ip = 192.168.0.77
-    = Kali linux - running universal forwarder & ssh service - ip = 192.168.0.78
+
+  = Ubuntu os - running splunk server - ip-92.168.0.77
+  = Kali linux - running universal forwarder & ssh service - ip = 192.168.0.78
 Steps used on this lab 
 
 1. Download andd install important packages
