@@ -14,7 +14,7 @@ Architecture of this lab
   = Kali linux - running universal forwarder & ssh service - ip = 192.168.0.78
 Steps used on this lab 
 
-1. Download andd install important packages
+1. Download and install important packages
        - Look basic SEIM pages for detials on how to donwnload and install both
                  - splunk enterprise
                  - splunk universal forwarder
