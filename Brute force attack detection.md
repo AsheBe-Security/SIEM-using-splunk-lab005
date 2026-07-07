@@ -1,5 +1,6 @@
 ## Lab 005 Brute force attack using ssh service on splunk
-objectives: by the end of this lab, i will be able to
+**objectives:** by the end of this lab, i will be able to
+
   - run ssh service on both the attack and victim machine running on vm
   - install and configure splunk enterprise on ubuntu 
   - install anf configure splunk universal forwarder on the attack machine to see of log can be generated on splunk
