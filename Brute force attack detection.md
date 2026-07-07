@@ -10,6 +10,7 @@
 Architecture of this lab 
 
   = Ubuntu os - running splunk server - ip-92.168.0.77
+  
   = Kali linux - running universal forwarder & ssh service - ip = 192.168.0.78
 Steps used on this lab 
 
